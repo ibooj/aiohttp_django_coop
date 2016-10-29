@@ -57,11 +57,9 @@ async def get_app():
     app = web.Application()
 
     router = app.router
-    router.add_route('GET', '/chat/{channel}/{token}/',
-                     handlers.websocket_handler)
+    router.add_route('GET', '/chat/{channel}/{token}/', handlers.websocket_handler)
 
-    app['redis'] = await aioredis.create_redis(('localhost', 6379),
-                                               db=1, encoding='utf-8')
+    app['redis'] = await aioredis.create_redis(('localhost', 6379), db=1, encoding='utf-8')
     app['db'] = await aiopg.connect(**db_config)
     app['waiters'] = defaultdict(BList)
 

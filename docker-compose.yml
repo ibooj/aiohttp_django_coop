@@ -1,0 +1,19 @@
+postgres:
+  image: postgres:latest
+  environment:
+    - POSTGRES_USER=django
+    - POSTGRES_DB=chat
+    - POSTGRES_PASSWORD=secr3t
+    - POSTGRES_HOST=postgresql
+    - POSTGRES_PORT=5432
+    - PGDATA=/var/lib/postgresql/data/pgdata
+    - C_FORCE_ROOT=true
+  volumes:
+    - ./pgdata:/var/lib/postgresql/data/pgdata
+  ports:
+    - "5432:5432"
+
+redis:
+  image: redis:latest
+  ports:
+    - "6379:6379"
